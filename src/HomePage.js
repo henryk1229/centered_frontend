@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import Environment from './Environment'
 
+//commented out environment to work on
+
 function HomePage() {
 
   const [currentUser, setCurrentUser] = useState('')
@@ -13,7 +15,12 @@ function HomePage() {
 
   return(
     <div className="home-page">
-      <Environment />
+      <form onSubmit={props.login}>
+        <input type="text" name="username" />
+        <input type="password" name="password" />
+      </form>
+
+
     </div>
   )
 

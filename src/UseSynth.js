@@ -24,11 +24,11 @@ export function useSynth(props){
     const synth1 = createSynth().toMaster();
     const synth2 = createSynth().toMaster()
 
-    synth1.volume.value = -24
+    synth1.volume.value = -32
     synth1.detune = detuneValue
     synth1.connect(pannerLeft)
 
-    synth2.volume.value = -24
+    synth2.volume.value = -32
     synth2.detune = detuneValue
     synth2.connect(pannerRight)
 

@@ -14,7 +14,7 @@ function Environment(props){
 
   useEffect(() => {
     let random = Math.floor(Math.random() * 7)
-      setRandomNum(random)
+      setRandomNum(3)
     },
     []
   )

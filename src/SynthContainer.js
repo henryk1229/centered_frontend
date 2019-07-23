@@ -7,7 +7,7 @@ import  { useSynth }  from './UseSynth'
 const noteMatrix = [
 
   [],
-  ["E3", "A4", "B5"],
+  ["E3", "A4", "F#4"],
   ["C3", "G3", "E4", "C4"],
   ["F3", "A3", "C4", "F4", "A4"],
   ["Eb3", "Bb3", "Eb4", "G4", "F4", "Bb4"],
@@ -16,7 +16,6 @@ const noteMatrix = [
   ["B4", "F#3", "B4", "C#5", "D#5", "B5", "F#5", "D#5", "C#5"],
 
 ]
-
 
 function SynthContainer(props){
 
@@ -58,7 +57,7 @@ function SynthContainer(props){
    return (
      <>
      {useSynth}
-     {props.randomNum !== 0 ? playMusic() : ''}
+     {props.randomNum !== 0 ? playMusic : ''}
     </>
   )
 }

@@ -21,7 +21,7 @@ export default function Spring(props) {
           style={
             {
               transform: props.xy.interpolate(trans),
-              background: 'lightblue'
+              background: '#4A2E37'
              }
           } />
         ))}
