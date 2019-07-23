@@ -13,18 +13,18 @@ function App() {
   const [page, setPage] = useState('login')
   // const [isLoading, setIsLoading] = useState(true)
 
-  // useEffect(()=>{
-  //     console.log('loaded')
-  //     fetch('http://localhost:3000/api/v1/users/profile', {
-  //       headers: {
-  //         "Authorization": localStorage.getItem("token")
-  //       }
-  //     })
-  //     .then(res=>res.json())
-  //     .then(console.log)
-  //   },
-  //   []
-  // )
+  useEffect(()=>{
+      console.log('loaded')
+      fetch('http://localhost:3000/api/v1/users/profile', {
+        headers: {
+          "Authorization": localStorage.getItem("token")
+        }
+      })
+      .then(res=>res.json())
+      .then(console.log)
+    },
+    []
+  )
 
   return (
     <>
