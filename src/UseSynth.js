@@ -13,23 +13,32 @@ export function useSynth(props){
     let detuneValue = genRandomDetune()
     let pannerLeft = new Tone.Panner(-1)
     let pannerRight = new Tone.Panner(1)
+    let echo = new Tone.FeedbackDelay('16n', 0.2);
+
+    let delay = Tone.context.createDelay(6.0);
+    delay.delayTime.value = 6.0;
 
     const freeverb = new Tone.Freeverb().toMaster();
-      freeverb.dampening.value = 1000
+    freeverb.dampening.value = 500
 
-    const synth1 = createSynth()
-    synth1.toMaster();
-
-    const synth2 = createSynth()
-    synth2.toMaster()
+    const synth1 = createSynth().toMaster();
+    const synth2 = createSynth().toMaster()
 
     synth1.volume.value = -24
     synth1.detune = detuneValue
-    synth1.connect(freeverb).connect(pannerLeft)
+    synth1.connect(pannerLeft)
 
     synth2.volume.value = -24
     synth2.detune = detuneValue
-    synth2.connect(freeverb).connect(pannerRight)
+    synth2.connect(pannerRight)
+
+    pannerLeft.connect(freeverb);
+    pannerRight.connect(freeverb);
+
+    freeverb.connect(echo)
+
+    echo.toMaster();
+    echo.connect(delay);
 
     setSynth([
       synth1,

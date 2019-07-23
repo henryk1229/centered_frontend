@@ -1,8 +1,8 @@
 import React from 'react'
 import Tone from 'tone'
 import  { useSynth }  from './UseSynth'
-import { createSynth } from './Synth.js'
-import { genRandomDetune } from './helperFunctions'
+
+
 
 const noteMatrix = [
 
@@ -17,39 +17,51 @@ const noteMatrix = [
 
 ]
 
+
 function SynthContainer(props){
+
+
+  const notes = noteMatrix[props.randomNum]
 
   const leftSynth = useSynth()[0]
   const rightSynth = useSynth()[1]
-  //effects
 
-  //
   const playMusic = () => {
 
-    const synthPart = new Tone.Sequence(
-      function(time, note) {
-        leftSynth.triggerAttackRelease(note, "10hz", time);
-      },
-      noteMatrix[props.randomNum],
-      '2n'
-    );
+    new Tone.Loop(time => {
+      rightSynth.triggerAttackRelease('Eb4', '1:2', time);
+      rightSynth.setNote('G5', '+0:2');
 
-    synthPart.start();
+      rightSynth.triggerAttackRelease('F5', '0:2', '+6:0');
 
-    const synthPart2 = new Tone.Sequence(
-      function(time, note) {
-        rightSynth.triggerAttackRelease(note, "10hz", time);
-      },
-      noteMatrix[props.randomNum],
-      '1n'
-    );
+      rightSynth.triggerAttackRelease('C5', '0:2', '+11:2');
 
-    synthPart2.start();
-    Tone.Transport.start()
+      rightSynth.triggerAttackRelease('Eb4', '2:0', '+19:0');
+      rightSynth.setNote('G5', '+19:1:2');
+      rightSynth.setNote('F5', '+19:3:0');
+      rightSynth.setNote('Bb5', '+19:4:2');
+    }, '30m').start();
+
+    new Tone.Loop(time => {
+    // Trigger D4 after 5 measures and hold for 1 full measure + two 1/4 notes
+      leftSynth.triggerAttackRelease('Eb3', '1:2', '+5:0');
+      // Switch to E4 after one more measure
+      leftSynth.setNote('Eb4', '+6:0');
+
+      // Trigger B3 after 11 measures + two 1/4 notes + two 1/16 notes. Hold for one measure
+      leftSynth.triggerAttackRelease('Eb3', '1m', '+11:2:2');
+      // Switch to G3 after a 1/2 note more
+      leftSynth.setNote('Bb4', '+12:0:2');
+
+      // Trigger G4 after 23 measures + two 1/4 notes. Hold for a half note.
+      leftSynth.triggerAttackRelease('G3', '0:2', '+23:2');
+    }, '40m').start();
+  Tone.Transport.bpm.value = 240;
+  Tone.Transport.start();
 
   }
 
-   console.log(leftSynth)
+   console.log(notes)
    return (
      <>
      {useSynth}

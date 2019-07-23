@@ -17,8 +17,8 @@ let envelope = {
 };
 //2-4 is best 8v for fE
 let filterEnvelope = {
-  baseFrequency: 100,
-  octaves: genRandomOsc() + 1,
+  baseFrequency: 200,
+  octaves: 2, //genRandomOsc() + 1,
   attack: 0,
   decay: 0,
   release: 1000
@@ -29,16 +29,16 @@ export function createSynth(){
     let duoSynth = new Tone.DuoSynth({
       harmonicity: 1,
       voice0: {
-        oscillator: {type: oscArray[genRandomOsc()]},
+        oscillator: {type: oscArray[genRandomOsc()]},//OscArray[genRandomOsc]
         envelope,
         filterEnvelope
       },
       voice1: {
-        oscillator: {type: oscArray[genRandomOsc()]},
+        oscillator: {type: oscArray[genRandomOsc()]}, //OscArray[genRandomOsc]
         envelope,
         filterEnvelope
       },
-      vibratoRate: 0.3,
+      vibratoRate: 0.5,
       vibratoAmount: 0.1
     });
     duoSynth.toMaster();
