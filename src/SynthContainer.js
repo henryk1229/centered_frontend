@@ -57,7 +57,7 @@ function SynthContainer(props){
    return (
      <>
      {useSynth}
-     {props.randomNum !== 0 ? playMusic : ''}
+     {props.randomNum !== 0 ? playMusic() : ''}
     </>
   )
 }

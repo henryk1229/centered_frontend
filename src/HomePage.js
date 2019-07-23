@@ -15,7 +15,7 @@ function HomePage() {
 
   return(
     <div className="home-page">
-      <form onSubmit={props.login}>
+      <form onSubmit={}>
         <input type="text" name="username" />
         <input type="password" name="password" />
       </form>
