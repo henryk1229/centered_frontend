@@ -20,7 +20,8 @@ export default function Spring(props) {
           key={index}
           style={
             {
-              transform: props.xy.interpolate(trans)
+              transform: props.xy.interpolate(trans),
+              background: 'lightblue'
              }
           } />
         ))}
