@@ -2,34 +2,49 @@ import React, { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import LoginPage from './LoginPage'
-import Environment from './Environment'
-import Indexpage from './IndexPage'
+import LoginPage from './components/LoginPage'
+import SignupPage from './components/SignupPage'
+import HomePage from './components/HomePage'
+import NavBar from './components/NavBar'
+import Environment from './components/Environment'
+// import Indexpage from './IndexPage'
 
+import { Switch, Route } from 'react-router-dom';
 //commented out HomePage for Environment
 
-function App() {
+const App = (props) => {
 
-  const [page, setPage] = useState('login')
-  // const [isLoading, setIsLoading] = useState(true)
+  const [user, setUser] = useState({})
+  const [isLoading, setIsLoading] = useState(true)
 
   useEffect(()=>{
-      console.log('loaded')
-      fetch('http://localhost:3000/api/v1/users/profile', {
-        headers: {
-          "Authorization": localStorage.getItem("token")
-        }
-      })
-      .then(res=>res.json())
-      .then(console.log)
+    if (!!localStorage.token) {
+        fetch('http://localhost:3000/api/v1/profile', {
+          headers: {
+            'Authorization': localStorage.getItem("token")
+          }
+        })
+        .then(res=>res.json())
+        .then(res=>setUser(res))
+      }
     },
     []
   )
-
+  // console.log(user)
   return (
-    <>
-      {page === 'login' ? <LoginPage /> : 'userPage'}
-    </>
+    <div className="app">
+    <NavBar user={user}/>
+    <Switch>
+       <Route exact path="/login" component={LoginPage} />
+       <Route exact path="/signup" component={SignupPage} />
+       <Route exact path='/environment' user={user} component={Environment} />
+       <Route exact path="/"
+       render={(routerProps) => {
+            return <HomePage user={user}/>
+            }}
+            />
+    </Switch>
+    </div>
   );
 }
 

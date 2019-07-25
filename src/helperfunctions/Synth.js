@@ -1,5 +1,5 @@
 import Tone from 'tone'
-import { genRandomOsc, genRandomDetune } from './helperFunctions'
+import { genRandomOsc } from './helperFunctions'
 
 //account for vol difference when "square"
 
@@ -18,8 +18,7 @@ let envelope = {
 //2-4 is best 8v for fE
 let filterEnvelope = {
   baseFrequency: 200,
-  octaves: 2, //genRandomOsc() + 1,
-  attack: 0,
+  octaves: 2,
   decay: 0,
   release: 1000
 };

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Environment from './Environment'
 
 //commented out environment to work on
 
@@ -17,7 +16,7 @@ const LoginPage = (props) => {
   }
 
   const handleSubmit = e => {
-
+    // console.log("before fetch", username, password)
     e.preventDefault()
     fetch('http://localhost:3000/api/v1/login', {
       method: "POST",
@@ -31,8 +30,9 @@ const LoginPage = (props) => {
     })
     .then(res=>res.json())
     .then(data=>{
+      // console.log(data)
       localStorage.setItem('token', data.token)
-      //then redirect to profile page
+      props.history.push("/")
     })
   }
 

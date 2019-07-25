@@ -5,7 +5,7 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #B57187;
+  background-color: lightyellow;
 }
 
 body {
@@ -21,6 +21,9 @@ body {
   cursor: default;
 }
 
+.image-container {
+  background-color: #B57187;
+}
 
 .hooks-main > div {
   position: absolute;
@@ -105,6 +108,6 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  filter: url('#spring');
   overflow: hidden;
+  cursor: none
 }

@@ -1,12 +1,12 @@
 import React from 'react'
-import Spring from './Spring'
+import Circle from '../components/Circle'
 
 function ImageContainer(props){
 
   // console.log(props)
   return(
     <div className="image-container">
-      <Spring randomNum={props.randomNum}/>
+      <Circle randomNum={props.randomNum}/>
     </div>
   )
 }

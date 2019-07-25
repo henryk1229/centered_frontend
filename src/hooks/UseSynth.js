@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import Tone from 'tone'
-import { genRandomOsc, genRandomDetune } from './helperFunctions'
-import { createSynth } from './Synth.js'
+import { genRandomDetune } from '../helperfunctions/helperFunctions'
+import { createSynth } from '../helperfunctions/Synth.js'
 
 //account for vol difference when "square"
-export function useSynth(props){
+export const useSynth = (props) => {
 
   const [synth, setSynth] = useState([])
 
@@ -19,7 +19,7 @@ export function useSynth(props){
     delay.delayTime.value = 6.0;
 
     const freeverb = new Tone.Freeverb().toMaster();
-    freeverb.dampening.value = 500
+    freeverb.dampening.value = -1000
 
     const synth1 = createSynth().toMaster();
     const synth2 = createSynth().toMaster()
@@ -51,3 +51,5 @@ export function useSynth(props){
   return synth
 
 }
+
+export default useSynth
