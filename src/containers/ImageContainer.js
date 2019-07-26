@@ -6,7 +6,7 @@ function ImageContainer(props){
   // console.log(props)
   return(
     <div className="image-container">
-      <Circle randomNum={props.randomNum}/>
+      <Circle randomNum={props.randomNum} color={props.color}/>
     </div>
   )
 }

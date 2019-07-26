@@ -33,9 +33,13 @@ const LoginPage = (props) => {
       // console.log(data)
       localStorage.setItem('token', data.token)
       props.history.push("/")
+      props.userState({
+        username: username,
+        password: password
+      })
     })
   }
-
+  // console.log(props)
   return(
     <div className="login-page">
       <form onSubmit={(e) => handleSubmit(e)}>
@@ -43,8 +47,6 @@ const LoginPage = (props) => {
         <input type="password" name="password" placeholder="password" onChange={(e) => handlePassword(e)}/>
         <input type="submit" value="log in" />
       </form>
-
-
     </div>
   )
 

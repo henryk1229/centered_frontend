@@ -36,6 +36,11 @@ const SignupPage = (props) => {
     .then(res=>res.json())
     .then(data=>{
       localStorage.setItem('token', data.token)
+      props.history.push("/")
+      props.userState({
+        username: username,
+        password: password
+      })
       //then redirect to profile page
     })
   }

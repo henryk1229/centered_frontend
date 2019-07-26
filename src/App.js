@@ -1,21 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 
 import LoginPage from './components/LoginPage'
 import SignupPage from './components/SignupPage'
 import HomePage from './components/HomePage'
 import NavBar from './components/NavBar'
-import Environment from './components/Environment'
+// import Environment from './components/Environment'
 // import Indexpage from './IndexPage'
 
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 //commented out HomePage for Environment
 
 const App = (props) => {
 
-  const [user, setUser] = useState({})
-  const [isLoading, setIsLoading] = useState(true)
+  const [user, setUser] = useState(null)
+  // const [isLoading, setIsLoading] = useState(true)
+
+  const logout = () => {
+      setUser(null)
+      localStorage.removeItem("token")
+      return <Redirect to="/" />
+   }
+
+   const userState = (data) => {
+     setUser(data)
+   }
 
   useEffect(()=>{
     if (!!localStorage.token) {
@@ -33,16 +43,19 @@ const App = (props) => {
   // console.log(user)
   return (
     <div className="app">
-    <NavBar user={user}/>
+    <NavBar user={user} logout={logout}/>
     <Switch>
-       <Route exact path="/login" component={LoginPage} />
-       <Route exact path="/signup" component={SignupPage} />
-       <Route exact path='/environment' user={user} component={Environment} />
-       <Route exact path="/"
-       render={(routerProps) => {
-            return <HomePage user={user}/>
-            }}
-            />
+      <Route exact path="/login" render={(props) => {
+        return <LoginPage user={user} userState={userState} {...props}/>}}
+        />
+      <Route exact path="/signup" render={(props) => {
+        return <SignupPage user={user} userState={userState} {...props}/>}}
+        />
+      <Route exact path="/"
+      render={(routerProps) => {
+        return <HomePage user={user}/>
+        }}
+        />
     </Switch>
     </div>
   );
