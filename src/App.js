@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 // import logo from './logo.svg';
-import './App.css';
+import './css/App.css';
 
 import LoginPage from './components/LoginPage'
 import SignupPage from './components/SignupPage'
@@ -15,6 +15,7 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 const App = (props) => {
 
   const [user, setUser] = useState(null)
+  const [userState, setUserState] = useState(null)
   // const [isLoading, setIsLoading] = useState(true)
 
   const logout = () => {
@@ -23,8 +24,12 @@ const App = (props) => {
       return <Redirect to="/" />
    }
 
-   const userState = (data) => {
-     setUser(data)
+   const leaveEnvironment = () => {
+      props.history.push("/")
+   }
+
+   const handleLogin = (data) => {
+     setUserState(data)
    }
 
   useEffect(()=>{
@@ -34,22 +39,21 @@ const App = (props) => {
             'Authorization': localStorage.getItem("token")
           }
         })
-        .then(res=>res.json())
-        .then(res=>setUser(res))
+        .then(res => res.json())
+        .then(res => setUser(res))
       }
-    },
-    []
-  )
+    },[userState])
+
   // console.log(user)
   return (
     <div className="app">
-    <NavBar user={user} logout={logout}/>
+    <NavBar user={user} logout={logout} leaveEnvironment={leaveEnvironment}/>
     <Switch>
       <Route exact path="/login" render={(props) => {
-        return <LoginPage user={user} userState={userState} {...props}/>}}
+        return <LoginPage user={user}  handleLogin={handleLogin} {...props}/>}}
         />
       <Route exact path="/signup" render={(props) => {
-        return <SignupPage user={user} userState={userState} {...props}/>}}
+        return <SignupPage user={user} handleLogin={handleLogin} {...props}/>}}
         />
       <Route exact path="/"
       render={(routerProps) => {

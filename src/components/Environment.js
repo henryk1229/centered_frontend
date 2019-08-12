@@ -22,8 +22,13 @@ const Environment = (props) => {
   // console.log(props.color)
   return(
     <>
-      <ImageContainer randomNum={randomNum} color={props.color} background={props.background}/>
-      <SoundContainer randomNum={randomNum}/>
+      <ImageContainer
+      randomNum={randomNum}
+      color={props.color}
+      background={props.background}
+      handleLeave={props.handleLeave}
+      user={props.user}
+      />
     </>
   )
 }

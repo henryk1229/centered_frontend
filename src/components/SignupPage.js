@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import '../css/SignupPage.css'
 
 //commented out environment to work on
 
@@ -23,13 +24,14 @@ const SignupPage = (props) => {
   const handleSubmit = e => {
 
     e.preventDefault()
-    fetch('http://localhost:3000/api/v1/login', {
+    fetch('http://localhost:3000/api/v1/signup', {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
         username: username,
+        email: email,
         password: password
       })
     })
@@ -37,21 +39,21 @@ const SignupPage = (props) => {
     .then(data=>{
       localStorage.setItem('token', data.token)
       props.history.push("/")
-      props.userState({
+      props.handleLogin({
         username: username,
         password: password
       })
       //then redirect to profile page
-    })
+    }).catch(console.log)
   }
 
   return(
     <div className="signup-page">
       <form onSubmit={(e) => handleSubmit(e)}>
-        <input type="text" name="username" placeholder="username" onChange={(e) => handleUsername(e)}/>
-        <input type="text" name="email" placeholder="email" onChange={(e) => handleUsername(e)}/>
-        <input type="password" name="password" placeholder="password" onChange={(e) => handlePassword(e)}/>
-        <input type="submit" value="log in" />
+        <input className="signup-field"type="text" name="username" placeholder="username" onChange={(e) => handleUsername(e)}/>
+        <input className="signup-field" type="text" name="email" placeholder="email" onChange={(e) => handleEmail(e)}/>
+        <input className="signup-field" type="password" name="password" placeholder="password" onChange={(e) => handlePassword(e)}/>
+        <input className="submit" type="submit" value="log in" />
       </form>
 
 

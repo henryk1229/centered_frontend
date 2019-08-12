@@ -1,46 +1,30 @@
 import React, { useState, useEffect } from 'react'
 import { Link, Redirect } from 'react-router-dom'
+import '../css/NavBar.css'
 
 const NavBar = (props) => {
 
-  // const [loggedIn, setLoggedIn] = useState(false)
+  // <button onClick={props.leaveEnvironment}> Leave Environment</button>
+      // <button onClick={props.saveTheme}> Save Theme</button>
 
-  // useEffect(()=>{
-  //     if (localStorage.token) {
-  //       setLoggedIn(true)
-  //     }
-  //   },
-  //   []
-  // )
-
-  // const  handleLogout = () => {
-  //   console.log("clicked")
-  //   delete localStorage.token
-  //   setLoggedIn(false)
-  //   return<Redirect to="/" />
-  //
-  // }
-  //
-  // const handleStatus = (props) => {
-  //
-  // }
-
-  // console.log("navbar", props)
   return(
-        <div className="navbar">
+        <div>
           {props.user ?
-            <div>
-              <p> _centered_ </p>
-              <Link to="/">Home</Link>&nbsp;
-              User Name: {props.user.username}
-              <button onClick={props.logout}> Log out </button>
-              <button onClick={props.saveTheme}> Save Theme</button>
+            <div className="nav-bar-wrapper">
+              <p id="logo"> _centered_ </p>
+              <ul id="contents">
+                Signed in as: {props.user.username}&nbsp;
+                <button id="button" onClick={props.logout}> Log out </button>
+              </ul>
+
             </div>
             :
-            <div>
-                <p> _centered_ </p>
-                <Link to="/login">Login</Link>&nbsp;
-                <Link to="/signup">Sign up</Link>&nbsp;
+            <div className="nav-bar-wrapper">
+                <p id="logo"> _centered_ </p>
+                <ul id="contents">
+                  <Link to="/login">Login</Link>&nbsp;
+                  <Link to="/signup">Sign up</Link>&nbsp;
+                </ul>
             </div>
           }
         </div>

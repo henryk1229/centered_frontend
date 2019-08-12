@@ -1,0 +1,25 @@
+.login-page {
+  height: 200px;
+  width: 250px;
+  margin: 10px;
+  position: absolute;
+  top: 80px;
+  left: 500px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.submit {
+  top: 60%;
+  left: -10%;
+  width: 150px;
+  height: 40px;
+  margin: 5px;
+}
+
+.login-field {
+  width: 150px;
+  border-color: white;
+  margin: 5px;
+}

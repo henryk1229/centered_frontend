@@ -1,38 +1,50 @@
 import React from 'react';
 import { CirclePicker} from 'react-color';
+
 import Environment from './Environment'
 
 class ColorChooser extends React.Component {
+
   state = {
     color: '#fff',
     background: '#fff'
   };
 
 handleChangeComplete = (color) => {
-  // console.log(color.hsl)
   let colorString = `hsl(${color.hsl.h.toString()},`+"100%,"+"80%)"
-  let triadColor = (color.hsl.h + 120).toString()
+  let triadColor = (color.hsl.h + 150).toString()
   let backgroundString = `hsl(${triadColor},`+"100%,"+"80%)"
-  console.log(backgroundString)
   this.setState({ color: colorString, background: backgroundString});
-  //setBackgroundstate to opposite of rgb values use hsv, take h value  and add 120 mod 360
+  //setBackgroundstate to opposite of rgb values use hsv, take h value  and add 150 mod 360
 
 };
 
+handleLeave = (e) => {
+  this.setState({ background: '#fff'})
+}
+
+
   render() {
-    // console.log(this.state)
+    // console.log("color", this.props.user)
     return (
-      <>
+      <div>
         {this.state.background === '#fff' ?
           <CirclePicker
-              onClick={(e)=> this.props.handleColorPick(e)}
               onChangeComplete={this.handleChangeComplete}
           />
           :
           <></>
         }
-        {this.state.background !== '#fff' ? <Environment color={this.state.color} background={this.state.background}/> : <></>}
-      </>
+        {this.state.background !== '#fff' ?
+          <Environment
+            color={this.state.color}
+            background={this.state.background}
+            handleLeave={this.handleLeave}
+            user={this.props.user}
+          />
+          :
+          <></>}
+      </div>
       )
     }
   }

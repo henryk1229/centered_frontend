@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import '../css/LoginPage.css'
 
 //commented out environment to work on
 
@@ -33,7 +34,7 @@ const LoginPage = (props) => {
       // console.log(data)
       localStorage.setItem('token', data.token)
       props.history.push("/")
-      props.userState({
+      props.handleLogin({
         username: username,
         password: password
       })
@@ -43,9 +44,9 @@ const LoginPage = (props) => {
   return(
     <div className="login-page">
       <form onSubmit={(e) => handleSubmit(e)}>
-        <input type="text" name="username" placeholder="username" onChange={(e) => handleUsername(e)}/>
-        <input type="password" name="password" placeholder="password" onChange={(e) => handlePassword(e)}/>
-        <input type="submit" value="log in" />
+        <input className="login-field" type="text" name="username" placeholder="username" onChange={(e) => handleUsername(e)}/>
+        <input className="login-field" type="password" name="password" placeholder="password" onChange={(e) => handlePassword(e)}/>
+        <input className="submit" type="submit" value="log in" />
       </form>
     </div>
   )

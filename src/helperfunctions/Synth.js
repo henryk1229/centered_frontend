@@ -1,8 +1,6 @@
 import Tone from 'tone'
 import { genRandomOsc } from './helperFunctions'
 
-//account for vol difference when "square"
-
 const oscArray = [
   "sine",
   "triangle",
@@ -10,39 +8,45 @@ const oscArray = [
   "sawtooth"
 ]
 
-let envelope = {
-  attack: 0.1,
-  release: 4,
-  releaseCurve: 'linear'
-};
-//2-4 is best 8v for fE
-let filterEnvelope = {
-  baseFrequency: 200,
-  octaves: 2,
-  decay: 0,
-  release: 1000
-};
-
 export function createSynth(){
 
-    let duoSynth = new Tone.DuoSynth({
-      harmonicity: 1,
-      voice0: {
-        oscillator: {type: oscArray[genRandomOsc()]},//OscArray[genRandomOsc]
-        envelope,
-        filterEnvelope
+  let reverb = new Tone.Reverb({ decay: 1, wet: 0.8 });
+  reverb.generate();
+
+  let synth = new Tone.PolySynth(6, Tone.FMSynth).chain(
+      new Tone.Chorus({ frequency: 0.33, depth: 0.7, wet: 0.85 }),
+      new Tone.FeedbackDelay({
+        delayTime: '64n',
+        feedback: 0.2,
+        wet: 0.3
+      }),
+      reverb,
+      Tone.Master
+    );
+
+    synth.set({
+      harmonicity: 0.5,
+      modulationIndex: 1,
+      oscillator: {
+        type: oscArray[0]
       },
-      voice1: {
-        oscillator: {type: oscArray[genRandomOsc()]}, //OscArray[genRandomOsc]
-        envelope,
-        filterEnvelope
+      envelope: {
+        attack: .4,
+        sustain: 1,
+        release: 1,
+        attackCurve: "linear",
+        releaseCurve: "linear"
       },
-      vibratoRate: 0.5,
-      vibratoAmount: 0.1
+      modulation: { type: oscArray[genRandomOsc()] },
+      modulationEnvelope: {
+        attack: .4,
+        sustain: 1,
+        release: 1,
+        releaseCurve: "linear"
+      },
+      volume: -10
     });
-    duoSynth.toMaster();
 
-
-  return duoSynth
+  return synth
 
 }

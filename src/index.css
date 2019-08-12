@@ -34,75 +34,15 @@ body {
   opacity: 1;
 }
 
-.hooks-main > div:nth-child(1) {
+.hooks-main > div:nth-child(odd) {
   width: 200px;
   height: 200px;
 }
 
-.hooks-main > div:nth-child(2) {
+.hooks-main > div:nth-child(even) {
   width: 250px;
   height: 250px;
 }
-
-.hooks-main > div:nth-child(3) {
-  width: 200px;
-  height: 200px;
-}
-
-.hooks-main > div:nth-child(4) {
-  width: 250px;
-  height: 250px;
-}
-
-.hooks-main > div:nth-child(5) {
-  width: 200px;
-  height: 200px;
-}
-
-.hooks-main > div:nth-child(6) {
-  width: 250px;
-  height: 250px;
-}
-
-.hooks-main > div:nth-child(7) {
-  width: 200px;
-  height: 200px;
-}
-
-.hooks-main > div:nth-child(8) {
-  width: 200px;
-  height: 200px;
-}
-
-.hooks-main > div:nth-child(9) {
-  width: 200px;
-  height: 200px;
-}
-
-/* .hooks-main > div::after {
-  content: '';
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.8);
-}
-
-.hooks-main > div:nth-child(2)::after {
-  top: 70px;
-  left: 70px;
-  width: 70px;
-  height: 70px;
-}
-
-.hooks-main > div:nth-child(3)::after {
-  top: 50px;
-  left: 50px;
-  width: 50px;
-  height: 50px;
-} */
 
 .hooks-main {
   position: absolute;
