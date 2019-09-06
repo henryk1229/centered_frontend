@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 // import logo from './logo.svg';
 import './css/App.css';
 
-import LoginPage from './components/LoginPage'
-import SignupPage from './components/SignupPage'
+import Login from './components/Login'
+import SignUp from './components/Signup'
 import HomePage from './components/HomePage'
 import NavBar from './components/NavBar'
 // import Environment from './components/Environment'
@@ -14,55 +14,98 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 const App = (props) => {
 
+  const [loading, setLoading] = useState(true)
+
+  // user state and user fetch config
   const [user, setUser] = useState(null)
-  const [userState, setUserState] = useState(null)
-  // const [isLoading, setIsLoading] = useState(true)
+  const token = localStorage.getItem('token')
+  const userUrl = 'http://localhost:3000/api/v1/auto_login'
+  // auth token for all fetch requests
+  const fetchConfig = {
+    headers: {
+      'Authorization': token
+    }
+  }
 
   const logout = () => {
-      setUser(null)
-      localStorage.removeItem("token")
-      return <Redirect to="/" />
-   }
+    setUser(null)
+    localStorage.removeItem("token")
+    return <Redirect to="/login" />
+  }
 
    const leaveEnvironment = () => {
       props.history.push("/")
    }
 
-   const handleLogin = (data) => {
-     setUserState(data)
+   const handleLogin = (user) => {
+     setUser(user)
    }
 
   useEffect(()=>{
-    if (!!localStorage.token) {
-        fetch('http://localhost:3000/api/v1/profile', {
-          headers: {
-            'Authorization': localStorage.getItem("token")
-          }
-        })
-        .then(res => res.json())
-        .then(res => setUser(res))
-      }
-    },[userState])
+    if (token) {
+      fetch(userUrl, fetchConfig)
+      .then(res => res.json())
+      .then(data => {
+        if (data.errors) {
+          localStorage.removeItem('token')
+          alert(data.errors)
+        } else {
+          setUser(data)
+          setLoading(false)
+        }
+      })
+    }
+  }, [loading])
 
-  // console.log(user)
-  return (
-    <div className="app">
-    <NavBar user={user} logout={logout} leaveEnvironment={leaveEnvironment}/>
-    <Switch>
-      <Route exact path="/login" render={(props) => {
-        return <LoginPage user={user}  handleLogin={handleLogin} {...props}/>}}
+  console.log(props)
+  if (!token) {
+    return (
+      <div className="app">
+        <NavBar
+          user={user}
+          logout={logout}
         />
-      <Route exact path="/signup" render={(props) => {
-        return <SignupPage user={user} handleLogin={handleLogin} {...props}/>}}
+          <Switch>
+            <Route exact path="/login" render={(props) => {
+              return <Login
+              handleLogin={handleLogin}
+              {...props}/>}}
+            />
+            <Route exact path="/signup" render={(props) => {
+              return <SignUp
+              handleLogin={handleLogin}
+              {...props}/>}}
+            />
+          </Switch>
+      </div>
+    )
+  } else if (loading && token) {
+    return (
+      <div className="app">
+        <NavBar
+          user={user}
+          logout={logout}
         />
-      <Route exact path="/"
-      render={(routerProps) => {
-        return <HomePage user={user}/>
-        }}
+      </div>
+    )
+  } else if (!loading && token) {
+    return (
+      <div className="app">
+        <NavBar
+          user={user}
+          logout={logout}
+          leaveEnvironment={leaveEnvironment}
         />
-    </Switch>
-    </div>
-  );
+        <Switch>
+          <Route exact path="/profile" render={(props) => {
+            return <HomePage
+            user={user}
+            {...props}/>}}
+          />
+        </Switch>
+      </div>
+    );
+  }
 }
 
 export default App;
