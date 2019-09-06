@@ -1,5 +1,3 @@
-
-
 export const useRandomNum = () =>{
 
   const [randomNum, setRandomNum] = useState(0)
