@@ -16,13 +16,11 @@ handleChangeComplete = (color) => {
   let backgroundString = `hsl(${triadColor},`+"100%,"+"80%)"
   this.setState({ color: colorString, background: backgroundString});
   //setBackgroundstate to opposite of rgb values use hsv, take h value  and add 150 mod 360
-
 };
 
 handleLeave = (e) => {
   this.setState({ background: '#fff'})
 }
-
 
   render() {
     // console.log("color", this.props.user)
@@ -30,7 +28,7 @@ handleLeave = (e) => {
       <div>
         {this.state.background === '#fff' ?
           <CirclePicker
-              onChangeComplete={this.handleChangeComplete}
+            onChangeComplete={this.handleChangeComplete}
           />
           :
           <></>
@@ -43,7 +41,8 @@ handleLeave = (e) => {
             user={this.props.user}
           />
           :
-          <></>}
+          <></>
+        }
       </div>
       )
     }
