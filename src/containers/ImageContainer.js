@@ -1,7 +1,7 @@
 import React from 'react'
 import Circle from '../components/Circle'
 
-function ImageContainer(props){
+const ImageContainer = (props) => {
 
   // console.log("circle", props.user)
   return(

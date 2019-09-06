@@ -7,20 +7,12 @@ import '../css/HomePage.css'
 
 const HomePage = (props) => {
 
-  // const [env, setEnv] = useState(false)
-
   // console.log("homepage", props.user)
   return(
     <div className="home-page-wrapper">
-      {props.user ?
-        <>
-        <div className="home-page-wrapper">
-        <ColorChooser user={props.user}/>
-        </div>
-        </>
-        :
-        null
-      }
+      <ColorChooser
+        user={props.user}
+      />
     </div>
   )
 }
