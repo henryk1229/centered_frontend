@@ -55,8 +55,6 @@ const SignupPage = (props) => {
         <input className="signup-field" type="password" name="password" placeholder="password" onChange={(e) => handlePassword(e)}/>
         <input className="submit" type="submit" value="log in" />
       </form>
-
-
     </div>
   )
 
