@@ -14,8 +14,6 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 const App = (props) => {
 
-  const [loading, setLoading] = useState(true)
-
   // user state and user fetch config
   const [user, setUser] = useState(null)
   const token = localStorage.getItem('token')
@@ -51,14 +49,30 @@ const App = (props) => {
           alert(data.errors)
         } else {
           setUser(data)
-          setLoading(false)
         }
       })
     }
-  }, [loading])
+  }, [])
 
-  console.log(props)
-  if (!token) {
+  console.log(user)
+  if (token) {
+    return (
+      <div className="app">
+        <NavBar
+          user={user}
+          logout={logout}
+          leaveEnvironment={leaveEnvironment}
+        />
+        <Switch>
+          <Route exact path="/profile" render={(props) => {
+            return <HomePage
+            user={user}
+            {...props}/>}}
+          />
+        </Switch>
+      </div>
+    );
+  } else {
     return (
       <div className="app">
         <NavBar
@@ -79,32 +93,6 @@ const App = (props) => {
           </Switch>
       </div>
     )
-  } else if (loading && token) {
-    return (
-      <div className="app">
-        <NavBar
-          user={user}
-          logout={logout}
-        />
-      </div>
-    )
-  } else if (!loading && token) {
-    return (
-      <div className="app">
-        <NavBar
-          user={user}
-          logout={logout}
-          leaveEnvironment={leaveEnvironment}
-        />
-        <Switch>
-          <Route exact path="/profile" render={(props) => {
-            return <HomePage
-            user={user}
-            {...props}/>}}
-          />
-        </Switch>
-      </div>
-    );
   }
 }
 
