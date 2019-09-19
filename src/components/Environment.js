@@ -29,6 +29,10 @@ const Environment = (props) => {
       handleLeave={props.handleLeave}
       user={props.user}
       />
+      <SoundContainer
+      user={props.user}
+      handleLeave={props.handleLeave}
+      />
     </>
   )
 }
