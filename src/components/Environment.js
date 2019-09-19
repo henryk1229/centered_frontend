@@ -3,7 +3,7 @@ import Tone from 'tone'
 
 import ImageContainer from '../containers/ImageContainer'
 import SoundContainer from '../containers/SoundContainer'
-import SynthContainer from '../containers/SynthContainer'
+
 
 // rememeber the randomNum = 0 on useEffect bug with playMusic()
 

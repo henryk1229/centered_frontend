@@ -12,14 +12,14 @@ import { createPanner } from '../helperfunctions/Panner.js'
 const SoundContainer = (props) => {
 
   //initialize mm & Tone
-  // let Tone = mm.Player.tone;
-  // let stepDur = 25;
-  // let seqSteps = 32;
-  // let model = new mm.Coconet(
-  //   `https://storage.googleapis.com/magentadata/js/checkpoints/coconet/bach`
-  // );
-  // let synth = createSynth()
-  // let drone = createDrone()
+  let Tone = mm.Player.tone;
+  let stepDur = 25;
+  let seqSteps = 32;
+  let model = new mm.Coconet(
+    `https://storage.googleapis.com/magentadata/js/checkpoints/coconet/bach`
+  );
+  let synth = createSynth()
+  let drone = createDrone()
 
   //initialize user "notes"
   let koanString = props.user.koan_number.toString()
@@ -114,7 +114,6 @@ const SoundContainer = (props) => {
     // };
   // });//comment out buffers } before )
 
-    console.log("ueNS")
       return () => { console.log("unmounted") }
     }, [])
   // console.log("sc", props.user)
