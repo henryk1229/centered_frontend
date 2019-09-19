@@ -16,8 +16,7 @@ const Environment = (props) => {
       setRandomNum(random)
 
     // return () => { Tone.transport.stop()}
-    },
-    []
+    },[]
   )
   // console.log(props.color)
   return(

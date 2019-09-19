@@ -22,32 +22,40 @@ const SoundContainer = (props) => {
   // let drone = createDrone()
 
   //initialize user "notes"
-  let koan_string = props.user.koan_number.toString()
-  let koan_array = koan_string.split('')
-  let num_array = []
-  koan_array.map(n =>{
+  let koanString = props.user.koan_number.toString()
+  let koanArray = koanString.split('')
+  let numArray = []
+  koanArray.map(n =>{
     // num = 1 num = 3 num = 6 num = 8
     if (n === "1") {
-      return num_array.push(11)
+      return numArray.push(11)
     } else if (n === "3") {
-      return num_array.push(12)
+      return numArray.push(12)
     }
     else if (n === "6") {
-      return num_array.push(16)
+      return numArray.push(16)
     }
     else if (n === "8") {
-      return num_array.push(16)
+      return numArray.push(16)
     }
     else {
-      num_array.push(parseInt(n))
+      numArray.push(parseInt(n))
     }
   })
   // seedNote = 50 + num_array[1]
   //take num_array and make it a matrix for lead and bass ?
-  console.log("num", num_array)
-  let seedNote = Tone.Frequency((50+num_array[0]), "midi").toNote()
-  console.log(seedNote)
-  let harmony = new Tone.Frequency(seedNote).harmonize(num_array)
+  console.log("num", numArray)
+  let seedNote = Tone.Frequency((48+numArray[0]), "midi").toNote()
+  let bassTonic = (36+numArray[0])
+  let bassNotes = [
+    Tone.Frequency(bassTonic, "midi").toNote(),
+    Tone.Frequency(bassTonic+7, "midi").toNote(),
+    Tone.Frequency(bassTonic+12, "midi").toNote(),
+    Tone.Frequency(bassTonic+4, "midi").toNote(),
+    Tone.Frequency(bassTonic-5, "midi").toNote()
+  ]
+  console.log("bass", bassNotes)
+  let harmony = new Tone.Frequency(seedNote).harmonize(numArray)
   for (let n of harmony) {
     console.log(Tone.Frequency(n, "midi").toNote())
   }
