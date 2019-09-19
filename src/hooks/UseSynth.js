@@ -45,8 +45,7 @@ export const useSynth = (props) => {
       synth2
     ])
 
-    }, []
-  )
+    }, [])
   // console.log("random Osc", genRandomDetune())
   return synth
 

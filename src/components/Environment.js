@@ -3,7 +3,7 @@ import Tone from 'tone'
 
 import ImageContainer from '../containers/ImageContainer'
 import SoundContainer from '../containers/SoundContainer'
-import SynthContainer from '../containers/SynthContainer'
+
 
 // rememeber the randomNum = 0 on useEffect bug with playMusic()
 
@@ -16,8 +16,7 @@ const Environment = (props) => {
       setRandomNum(random)
 
     // return () => { Tone.transport.stop()}
-    },
-    []
+    },[]
   )
   // console.log(props.color)
   return(
@@ -28,6 +27,10 @@ const Environment = (props) => {
       background={props.background}
       handleLeave={props.handleLeave}
       user={props.user}
+      />
+      <SoundContainer
+      user={props.user}
+      handleLeave={props.handleLeave}
       />
     </>
   )
