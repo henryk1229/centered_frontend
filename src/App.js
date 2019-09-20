@@ -57,7 +57,7 @@ const App = (props) => {
     }
   }, [loading])
 
-  console.log("app",props)
+
   if (token && !loading) {
     return (
       <div className="app">
