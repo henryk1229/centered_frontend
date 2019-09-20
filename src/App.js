@@ -6,13 +6,14 @@ import Login from './components/Login'
 import SignUp from './components/Signup'
 import HomePage from './components/HomePage'
 import NavBar from './components/NavBar'
-// import Environment from './components/Environment'
-// import Indexpage from './IndexPage'
 
-import { Switch, Route, Redirect } from 'react-router-dom';
-//commented out HomePage for Environment
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+
 
 const App = (props) => {
+
+  //app loader
+  const [loading, setLoading] = useState(false)
 
   // user state and user fetch config
   const [user, setUser] = useState(null)
@@ -49,13 +50,15 @@ const App = (props) => {
           alert(data.errors)
         } else {
           setUser(data)
+          setLoading(false)
+          props.history.push("/profile")
         }
       })
     }
-  }, [])
+  }, [loading])
 
-  console.log(user)
-  if (token) {
+  console.log("app",props)
+  if (token && !loading) {
     return (
       <div className="app">
         <NavBar
@@ -70,6 +73,16 @@ const App = (props) => {
             {...props}/>}}
           />
         </Switch>
+      </div>
+    );
+  } else if (token && loading) {
+    return (
+      <div className="app">
+        <NavBar
+          user={user}
+          logout={logout}
+          leaveEnvironment={leaveEnvironment}
+        />
       </div>
     );
   } else {
@@ -96,4 +109,4 @@ const App = (props) => {
   }
 }
 
-export default App;
+export default withRouter(App);
