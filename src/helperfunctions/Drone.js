@@ -1,12 +1,6 @@
 import Tone from 'tone'
 
 export function createDrone(){
-   //
-   //  let delay = new Tone.FeedbackDelay({
-   //   delayTime: '32n',
-   //   feedback: 0.88,
-   //   wet: 0.66
-   // });
 
    let flanger = new Tone.FeedbackDelay({
      delayTime: 0.005,
@@ -19,13 +13,12 @@ export function createDrone(){
    reverb.generate();
 
    let synth = new Tone.PolySynth(5, Tone.FMSynth).chain(
-     // delay,
      flanger,
      reverb,
      Tone.Master
    );
    synth.set({
-     harmonicity: 1.5,
+     harmonicity: 1.7,
      modulationIndex: 1,
      oscillator: {
        type: "sine"
@@ -43,7 +36,7 @@ export function createDrone(){
        sustain: 2,
        release: 2
      },
-     volume: -5
+     volume: -8
    });
 
    return synth

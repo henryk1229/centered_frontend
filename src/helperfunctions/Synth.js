@@ -25,19 +25,19 @@ export function createSynth(){
     );
 
     synth.set({
-      harmonicity: 0.5,
+      harmonicity: 1,
       modulationIndex: 1,
       oscillator: {
-        type: oscArray[0]
+        type: "sine"
       },
       envelope: {
-        attack: .4,
+        attack: .6,
         sustain: 1,
-        release: 1,
+        release: 2,
         attackCurve: "linear",
         releaseCurve: "linear"
       },
-      modulation: { type: oscArray[genRandomOsc()] },
+      modulation: { type: "sawtooth" },
       modulationEnvelope: {
         attack: .4,
         sustain: 1,
