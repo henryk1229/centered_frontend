@@ -29,7 +29,6 @@ const Environment = (props) => {
       />
       <SoundContainer
       user={props.user}
-      handleLeave={props.handleLeave}
       randomNum={randomNum}
       />
     </>

@@ -30,11 +30,9 @@ const ImageContainer = (props) => {
   }
   //
   const handleKeyPress = (e) =>{
-  //   console.log(e.key)
-  //   if (e.key === 'a') {
-  //     Tone.Transport.stop()
-  //     props.handleLeave()
-  //   }
+    if (e.key === 'a') {
+      props.handleLeave()
+    }
   }
 
   return (
