@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Tone from 'tone'
 
 import ImageContainer from '../containers/ImageContainer'
 import SoundContainer from '../containers/SoundContainer'
@@ -9,7 +8,7 @@ import SoundContainer from '../containers/SoundContainer'
 
 const Environment = (props) => {
 
-  const [randomNum, setRandomNum] = useState(0)
+  const [randomNum, setRandomNum] = useState(null)
 
   useEffect(() => {
     let random = Math.floor(Math.random() * 7)

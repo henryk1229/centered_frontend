@@ -1,12 +1,4 @@
 import Tone from 'tone'
-import { genRandomOsc } from './helperFunctions'
-
-const oscArray = [
-  "sine",
-  "triangle",
-  "square",
-  "sawtooth"
-]
 
 export function createSynth(){
 

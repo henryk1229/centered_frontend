@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import Tone from 'tone'
-import * as mm from '@magenta/music';
-import { genRandomOsc } from '../helperfunctions/helperFunctions'
+// import * as mm from '@magenta/music';
+// import { genRandomOsc } from '../helperfunctions/helperFunctions'
 import { createSynth } from '../helperfunctions/Synth.js'
 import { createDrone } from '../helperfunctions/Drone.js'
 import { createPanner } from '../helperfunctions/Panner.js'
@@ -26,7 +26,7 @@ const SoundContainer = (props) => {
       return numArray.push(16)
     }
     else {
-      numArray.push(parseInt(n))
+      return numArray.push(parseInt(n))
     }
   })
 

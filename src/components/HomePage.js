@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react'
-import { Link, Redirect } from 'react-router-dom'
-import Environment from './Environment'
+import React from 'react'
+// import Environment from './Environment'
 import ColorChooser from './ColorChooser'
 
 import '../css/HomePage.css'
