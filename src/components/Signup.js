@@ -43,14 +43,14 @@ const SignUp = (props) => {
       else {
         console.log("signup", data)
         localStorage.setItem('token', data.jwt)
-        props.handleLogin(data.user)
+        props.login(data.user)
         props.history.push("/profile")
       }
     }).catch(console.log)
   }
 
   return(
-    <div>
+    <div className="signup-page">
       <form onSubmit={(e) => handleSubmit(e)}>
         <input
           className="signup-field"
@@ -66,7 +66,7 @@ const SignUp = (props) => {
           placeholder="password"
           onChange={(e) => handlePassword(e)}
         />
-        <input type="submit" value="log in" />
+        <input className="submit" type="submit" value="join" />
       </form>
     </div>
   )

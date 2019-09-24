@@ -26,19 +26,27 @@ const App = (props) => {
     }
   }
 
+  //background for env
+  const [background, setBackground] = useState('#fff')
+
   const logout = () => {
+    setBackground('#fff')
     setUser(null)
     localStorage.removeItem("token")
     return <Redirect to="/login" />
   }
 
-   const leaveEnvironment = () => {
-      props.history.push("/profile")
-   }
+  const login = (user) => {
+    setUser(user)
+  }
 
-   const handleLogin = (user) => {
-     setUser(user)
-   }
+  const handleBackground = (background) => {
+    setBackground(background)
+  }
+
+  const leaveEnv = () => {
+    setBackground('#fff')
+  }
 
   useEffect(()=>{
     if (token) {
@@ -64,12 +72,15 @@ const App = (props) => {
         <NavBar
           user={user}
           logout={logout}
-          leaveEnvironment={leaveEnvironment}
+          background={background}
+          leaveEnv={leaveEnv}
         />
         <Switch>
           <Route exact path="/profile" render={(props) => {
             return <HomePage
             user={user}
+            background={background}
+            handleBackground={handleBackground}
             {...props}/>}}
           />
         </Switch>
@@ -81,7 +92,7 @@ const App = (props) => {
         <NavBar
           user={user}
           logout={logout}
-          leaveEnvironment={leaveEnvironment}
+          leaveEnv={leaveEnv}
         />
       </div>
     );
@@ -95,12 +106,12 @@ const App = (props) => {
           <Switch>
             <Route exact path="/login" render={(props) => {
               return <Login
-              handleLogin={handleLogin}
+              login={login}
               {...props}/>}}
             />
             <Route exact path="/signup" render={(props) => {
               return <SignUp
-              handleLogin={handleLogin}
+              login={login}
               {...props}/>}}
             />
           </Switch>

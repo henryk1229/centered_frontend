@@ -16,11 +16,19 @@
 #contents {
   margin-left: auto;
   margin: 5px;
+  width: 700px;
 }
 
 #button {
   top: 60%;
   left: -10%;
   width: 100px;
+  margin: 5px;
+}
+
+#button-right {
+  top: 60%;
+  left: -10%;
+  width: 130px;
   margin: 5px;
 }

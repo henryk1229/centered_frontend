@@ -45,14 +45,14 @@ const Login = (props) => {
       }
       else {
         localStorage.setItem('token', data.jwt)
-        props.handleLogin(data.user)
+        props.login(data.user)
         props.history.push("/profile")
       }
     }).catch(console.log)
   }
 
   return(
-    <div>
+    <div className="login-page">
       <form onSubmit={(e) => handleSubmit(e)}>
           <input
             className="login-field"
@@ -68,7 +68,7 @@ const Login = (props) => {
             placeholder="password"
             onChange={(e) => handlePassword(e)}
           />
-          <input type="submit" value="log in" />
+          <input className="submit" type="submit" value="log in" />
         </form>
     </div>
   )

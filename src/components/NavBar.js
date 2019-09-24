@@ -4,17 +4,19 @@ import '../css/NavBar.css'
 
 const NavBar = (props) => {
 
-  // <button onClick={props.leaveEnvironment}> Leave Environment</button>
-      // <button onClick={props.saveTheme}> Save Theme</button>
-
   return(
-    <div>
+    <div >
       {props.user ?
         <div className="nav-bar-wrapper">
           <p id="logo"> _centered_ </p>
           <ul id="contents">
             Signed in as: {props.user.username}&nbsp;
             <button id="button" onClick={props.logout}> Log out </button>
+            {props.background  !== '#fff' ?
+            <button id="button-right" onClick={() => props.leaveEnv()}> Leave Environment</button>
+            :
+            null
+          }
           </ul>
         </div>
         :
