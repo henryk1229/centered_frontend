@@ -3,7 +3,6 @@ import Tone from 'tone'
 
 import { createSynth } from '../helperfunctions/Synth'
 import { createDrone } from '../helperfunctions/Drone'
-import { createPanner } from '../helperfunctions/Panner'
 
 const SoundContainer = (props) => {
 
@@ -51,7 +50,7 @@ const SoundContainer = (props) => {
     wet: 1
   }).toMaster().start()
 
-  //instantiate synths
+  //initialize synths
   let rightSynth = createSynth()
   rightSynth.chain(autoPan, Tone.Master)
 
@@ -87,7 +86,7 @@ const SoundContainer = (props) => {
       Tone.Transport.start();
       //
 
-      return () => { Tone.Transport.stop() }
+      return () => { lead.cancel(); drone.cancel() }
     }, [])
   // console.log("sc", props.user)
   return(

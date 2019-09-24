@@ -4,9 +4,6 @@ import '../css/NavBar.css'
 
 const NavBar = (props) => {
 
-  // <button onClick={props.leaveEnvironment}> Leave Environment</button>
-      // <button onClick={props.saveTheme}> Save Theme</button>
-
   return(
     <div>
       {props.user ?
@@ -15,6 +12,7 @@ const NavBar = (props) => {
           <ul id="contents">
             Signed in as: {props.user.username}&nbsp;
             <button id="button" onClick={props.logout}> Log out </button>
+            <button id="button-right" onClick={() => props.leaveEnv()}> Leave Environment</button>
           </ul>
         </div>
         :
