@@ -21,12 +21,21 @@ class HomePage extends Component {
 
   // console.log("homepage", props.user)
   render() {
+
+
+
     return (
       <div className="home-page-wrapper">
         {this.props.background === '#fff' ?
-          <CirclePicker
-            onChangeComplete={this.handleChangeComplete}
-          />
+          <div className="color-picker">
+            <CirclePicker
+              onChangeComplete={this.handleChangeComplete}
+              width={'700px'}
+              circleSize={96}
+              circleSpacing={18}
+
+            />
+          </div>
           :
           <Environment
             color={this.state.color}

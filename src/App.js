@@ -30,12 +30,13 @@ const App = (props) => {
   const [background, setBackground] = useState('#fff')
 
   const logout = () => {
+    setBackground('#fff')
     setUser(null)
     localStorage.removeItem("token")
     return <Redirect to="/login" />
   }
 
-  const handleLogin = (user) => {
+  const login = (user) => {
     setUser(user)
   }
 
@@ -71,6 +72,7 @@ const App = (props) => {
         <NavBar
           user={user}
           logout={logout}
+          background={background}
           leaveEnv={leaveEnv}
         />
         <Switch>
@@ -104,12 +106,12 @@ const App = (props) => {
           <Switch>
             <Route exact path="/login" render={(props) => {
               return <Login
-              handleLogin={handleLogin}
+              login={login}
               {...props}/>}}
             />
             <Route exact path="/signup" render={(props) => {
               return <SignUp
-              handleLogin={handleLogin}
+              login={login}
               {...props}/>}}
             />
           </Switch>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Tone from 'tone'
 
 import { createSynth } from '../helperfunctions/Synth'
@@ -59,6 +59,8 @@ const SoundContainer = (props) => {
 
   useEffect(()=>{
 
+      Tone.Master.mute = false
+
       let lead = new Tone.Loop(time => {
         rightSynth.triggerAttackRelease(harmony[0], '4', time);
         rightSynth.triggerAttackRelease(harmony[1], '2', '+2:0');
@@ -86,7 +88,7 @@ const SoundContainer = (props) => {
       Tone.Transport.start();
       //
 
-      return () => { lead.cancel(); drone.cancel() }
+      return () => { lead.dispose(); drone.dispose(); Tone.Master.mute = true }
     }, [])
   // console.log("sc", props.user)
   return(
