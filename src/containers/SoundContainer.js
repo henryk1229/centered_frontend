@@ -2,9 +2,10 @@ import React, { useEffect } from 'react'
 import Tone from 'tone'
 // import * as mm from '@magenta/music';
 // import { genRandomOsc } from '../helperfunctions/helperFunctions'
-import { createSynth } from '../helperfunctions/Synth.js'
-import { createDrone } from '../helperfunctions/Drone.js'
-import { createPanner } from '../helperfunctions/Panner.js'
+
+import { createSynth } from '../helperfunctions/Synth'
+import { createDrone } from '../helperfunctions/Drone'
+import { createPanner } from '../helperfunctions/Panner'
 
 const SoundContainer = (props) => {
 
@@ -30,6 +31,7 @@ const SoundContainer = (props) => {
     }
   })
 
+  //initialize seednote and drone notes
   let seedNote = Tone.Frequency((60+props.randomNum), "midi").toNote()
   let bassTonic = (36+props.randomNum)
   let bassNotes = [
@@ -39,12 +41,9 @@ const SoundContainer = (props) => {
     Tone.Frequency(bassTonic-5, "midi").toNote(),
     // Tone.Frequency(bassTonic-5, "midi").toNote()
   ]
-  console.log("bass", bassNotes)
+
+  // set harmonic sequence
   let harmony = new Tone.Frequency(seedNote).harmonize(numArray)
-  for (let n of harmony) {
-    console.log(Tone.Frequency(n, "midi").toNote())
-  }
-  console.log(harmony)
 
   //effects
   // // panner 3d
@@ -53,11 +52,12 @@ const SoundContainer = (props) => {
   let pannerRight = createPanner()
   pannerRight.setPosition(3,0,0)
   // let delay = new Tone.FeedbackDelay ('32n', 0.5)
-  let pingPong = new Tone.PingPongDelay("4n", .9)
+  // let pingPong = new Tone.PingPongDelay("8n", .95)
 
   //instantiate synths
   let rightSynth = createSynth()
-  let source = rightSynth.chain(pannerRight, Tone.Master)
+  // rightSynth.chain(pannerRight, Tone.Master)
+  // let source = rightSynth.chain(pannerRight, Tone.Master)
 
   let leftSynth = createDrone()
   leftSynth.chain(pannerLeft, Tone.Master)

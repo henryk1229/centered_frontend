@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useTrail, animated } from 'react-spring'
-import '../index.css'
+
+import '../css/ImageContainer.css'
 
 const fast = { tension: 10, friction: (Math.floor(Math.random() * 10) + 10)  }
 const slow = { mass: 10, tension: 30, friction: (Math.floor(Math.random() * 10) + 10) * 5  }
@@ -11,23 +12,10 @@ const ImageContainer = (props) => {
   const [trail, set] = useTrail((props.randomNum + 2), () => ({ xy: [0, 0], config: i => (i%2 === 0 ? fast : slow) }))
   const color = useState(props.color)[0]
 
-  const setTrailAndElse = (e) =>{
+  const setTrail = (e) =>{
     set({ xy: [e.clientX, e.clientY] })
   }
 
-  const pingOn = () => {
-  //   console.log("clicked")
-  //   pannerLeft.setPosition(3,0,0)
-  //   pannerRight.setPosition(-3,0,0)
-  //   source.chain(pingPong, Tone.Master)
-  }
-  //
-  const pingOff = () => {
-  //   // pingPong.disconnect()
-  //   pannerLeft.setPosition(-3,0,0)
-  //   pannerRight.setPosition(3,0,0)
-  //   source.disconnect(pingPong)
-  }
   //
   const handleKeyPress = (e) =>{
     if (e.key === 'a') {
@@ -37,7 +25,7 @@ const ImageContainer = (props) => {
 
   return (
     <div>
-      <div className="hooks-main" onMouseMove={e => setTrailAndElse(e)} onMouseDown={() => pingOn()} onMouseUp={() => pingOff()}
+      <div className="circle-main" onMouseMove={e => setTrail(e)}
       onKeyPress={(e)=>handleKeyPress(e)}
       tabIndex="1" >
         {trail.map((props, index) => (
