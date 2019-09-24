@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react'
 import Tone from 'tone'
-// import * as mm from '@magenta/music';
-// import { genRandomOsc } from '../helperfunctions/helperFunctions'
 
 import { createSynth } from '../helperfunctions/Synth'
 import { createDrone } from '../helperfunctions/Drone'
@@ -45,22 +43,20 @@ const SoundContainer = (props) => {
   // set harmonic sequence
   let harmony = new Tone.Frequency(seedNote).harmonize(numArray)
 
-  //effects
-  // // panner 3d
-  let pannerLeft = createPanner()
-  pannerLeft.setPosition(-3,0,0)
-  let pannerRight = createPanner()
-  pannerRight.setPosition(3,0,0)
-  // let delay = new Tone.FeedbackDelay ('32n', 0.5)
-  // let pingPong = new Tone.PingPongDelay("8n", .95)
+  //autopan
+  let autoPan = new Tone.AutoPanner({
+    frequency: .15,
+    type: "sine",
+    depth: 1,
+    wet: 1
+  }).toMaster().start()
 
   //instantiate synths
   let rightSynth = createSynth()
-  // rightSynth.chain(pannerRight, Tone.Master)
-  // let source = rightSynth.chain(pannerRight, Tone.Master)
+  rightSynth.chain(autoPan, Tone.Master)
 
   let leftSynth = createDrone()
-  leftSynth.chain(pannerLeft, Tone.Master)
+  leftSynth.toMaster()
 
   useEffect(()=>{
 
