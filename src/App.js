@@ -33,7 +33,7 @@ const App = (props) => {
   }
 
    const leaveEnvironment = () => {
-      props.history.push("/")
+      props.history.push("/profile")
    }
 
    const handleLogin = (user) => {
