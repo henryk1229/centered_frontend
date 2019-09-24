@@ -6,8 +6,6 @@
   top: 80px;
   left: 500px;
   padding: 30px;
-  display: flex;
-  flex-direction: column;
 }
 
 .submit {

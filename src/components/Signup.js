@@ -66,7 +66,7 @@ const SignUp = (props) => {
           placeholder="password"
           onChange={(e) => handlePassword(e)}
         />
-        <input className="submit" type="submit" value="log in" />
+        <input type="submit" value="log in" />
       </form>
     </div>
   )

@@ -3,9 +3,6 @@ import React, { useState, useEffect } from 'react'
 import ImageContainer from '../containers/ImageContainer'
 import SoundContainer from '../containers/SoundContainer'
 
-
-// rememeber the randomNum = 0 on useEffect bug with playMusic()
-
 const Environment = (props) => {
 
   const [randomNum, setRandomNum] = useState(null)
@@ -30,6 +27,8 @@ const Environment = (props) => {
       <SoundContainer
       user={props.user}
       randomNum={randomNum}
+      color={props.color}
+      background={props.background}
       />
     </>
   )
