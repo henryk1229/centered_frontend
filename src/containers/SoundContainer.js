@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import Tone from 'tone'
 
 import { createSynth } from '../helperfunctions/Synth'
@@ -81,14 +81,14 @@ const SoundContainer = (props) => {
 
       }, '41m')
 
-      lead.start()
+      // lead.start()
       drone.start()
 
       Tone.Transport.bpm.value = 180;
       Tone.Transport.start();
       //
 
-      return () => { lead.dispose(); drone.dispose(); Tone.Master.mute = true }
+      return () => { lead.stop(); drone.stop(); Tone.Transport.clear(lead); Tone.Transport.clear(drone); console.log("unmount") }
     }, [])
   // console.log("sc", props.user)
   return(

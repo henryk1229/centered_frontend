@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import Tone from 'tone'
+// import Tone from 'tone'
 import ImageContainer from '../containers/ImageContainer'
 import SoundContainer from '../containers/SoundContainer'
 

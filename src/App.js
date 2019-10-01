@@ -7,7 +7,7 @@ import SignUp from './components/Signup'
 import HomePage from './components/HomePage'
 import NavBar from './components/NavBar'
 
-import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 
 
 const App = (props) => {
@@ -33,7 +33,7 @@ const App = (props) => {
     setBackground('#fff')
     setUser(null)
     localStorage.removeItem("token")
-    return <Redirect to="/login" />
+    props.history.push("/")
   }
 
   const login = (user) => {
@@ -64,7 +64,6 @@ const App = (props) => {
       })
     }
   }, [loading])
-
 
   if (token && !loading) {
     return (

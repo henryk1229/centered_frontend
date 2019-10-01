@@ -21,9 +21,6 @@ class HomePage extends Component {
 
   // console.log("homepage", props.user)
   render() {
-
-
-
     return (
       <div className="home-page-wrapper">
         {this.props.background === '#fff' ?

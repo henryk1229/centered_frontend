@@ -41,7 +41,6 @@ const SignUp = (props) => {
         alert(data.errors)
       }
       else {
-        console.log("signup", data)
         localStorage.setItem('token', data.jwt)
         props.login(data.user)
         props.history.push("/profile")
