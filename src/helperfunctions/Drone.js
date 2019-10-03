@@ -4,23 +4,22 @@ export function createDrone(){
 
    let flanger = new Tone.FeedbackDelay({
      delayTime: 0.005,
-     feedback: 0.1,
-     wet: .66
+     feedback: 0.5,
+     wet: .33
    });
    new Tone.LFO(1, 0.003, 0.007).start().connect(flanger.delayTime);
 
    let reverb = new Tone.Reverb({ decay: 1, wet: 0.8 });
    reverb.generate();
 
-   let comb  = new Tone.LowpassCombFilter({
-     delayTime : 0.05,
-     resonance : 0.8,
-     dampening : 3000
-   })
+   // let comb  = new Tone.LowpassCombFilter({
+   //   delayTime : 0.05,
+   //   resonance : 0.5,
+   //   dampening : 3000
+   // })
 
-   let synth = new Tone.PolySynth(8, Tone.FMSynth).chain(
+   let synth = new Tone.PolySynth(4, Tone.FMSynth).chain(
      flanger,
-     comb,
      reverb,
      Tone.Master
    );
@@ -32,9 +31,11 @@ export function createDrone(){
      },
      envelope: {
        attack: 2,
-       decay: 2,
-       sustain: 4,
-       release: 4
+       decay: 4,
+       sustain: 2,
+       release: 2,
+       attackCurve: "linear",
+       releaseCurve: "linear"
      },
      modulation: { type: "triangle" },
      modulationEnvelope: {
@@ -43,7 +44,7 @@ export function createDrone(){
        sustain: 2,
        release: 2
      },
-     volume: -10
+     volume: -13
    });
 
    return synth

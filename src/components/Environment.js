@@ -7,21 +7,23 @@ const Environment = (props) => {
 
   const [randomNum, setRandomNum] = useState(null)
 
+  const [lava, toggleLava] = useState(false)
+
   useEffect(() => {
     let random = Math.floor(Math.random() * 7)
       setRandomNum(random)
-
-
     }, [])
-  // console.log(props.color)
+
+  console.log(props.number)
   return(
     <>
       <ImageContainer
       randomNum={randomNum}
       color={props.color}
       background={props.background}
-      handleLeave={props.handleLeave}
+      leaveEnv={props.leaveEnv}
       user={props.user}
+      lava={lava}
       />
       <SoundContainer
       user={props.user}

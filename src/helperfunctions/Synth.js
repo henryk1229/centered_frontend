@@ -5,7 +5,7 @@ export function createSynth(){
   let reverb = new Tone.Reverb({ decay: 1, wet: 0.8 });
   reverb.generate();
 
-  let synth = new Tone.PolySynth(6, Tone.FMSynth).chain(
+  let synth = new Tone.PolySynth(8, Tone.FMSynth).chain(
       new Tone.Chorus({ frequency: 0.33, depth: 0.7, wet: 0.85 }),
       new Tone.FeedbackDelay({
         delayTime: '64n',
