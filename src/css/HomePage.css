@@ -17,3 +17,12 @@
   position: absolute;
   padding: 30px;
 }
+
+.number-select {
+  height: 30px;
+  top: 520px;
+  left: 700px;
+  margin: 10px;
+  position: absolute;
+  padding: 30px;
+}

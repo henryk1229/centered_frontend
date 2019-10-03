@@ -57,38 +57,48 @@ const SoundContainer = (props) => {
   let leftSynth = createDrone()
   leftSynth.toMaster()
 
+
+
+  let lead = new Tone.Loop(time => {
+    rightSynth.triggerAttackRelease(harmony[0], '4', time);
+    rightSynth.triggerAttackRelease(harmony[1], '2', '+2:0');
+    rightSynth.triggerAttackRelease(harmony[2], '4', '+4:0');
+    rightSynth.triggerAttackRelease(harmony[3], '4', '+8:0');
+    rightSynth.triggerAttackRelease(harmony[4], '2', '+10:0');
+    rightSynth.triggerAttackRelease(harmony[5], '4', '+14:0');
+    rightSynth.triggerAttackRelease(harmony[6], '2', '+16:0');
+  }, '23m')
+
+
+
+  let drone = new Tone.Loop(time => {
+    leftSynth.triggerAttackRelease(bassNotes[0], '8', '+4:0');
+    leftSynth.triggerAttackRelease(bassNotes[1], '8', '+12:0');
+    leftSynth.triggerAttackRelease(bassNotes[0], '8', '+20:0');
+    leftSynth.triggerAttackRelease(bassNotes[2], '4', '+30:0');
+    leftSynth.triggerAttackRelease(bassNotes[3], '4', '+34:0');
+    leftSynth.triggerAttackRelease(bassNotes[4], '4', '+38:0');
+  }, '41m')
+
+
   useEffect(()=>{
+    console.log("useEff runs")
 
       Tone.Master.mute = false
 
-      let lead = new Tone.Loop(time => {
-        rightSynth.triggerAttackRelease(harmony[0], '4', time);
-        rightSynth.triggerAttackRelease(harmony[1], '2', '+2:0');
-        rightSynth.triggerAttackRelease(harmony[2], '4', '+4:0');
-        rightSynth.triggerAttackRelease(harmony[3], '4', '+8:0');
-        rightSynth.triggerAttackRelease(harmony[4], '2', '+10:0');
-        rightSynth.triggerAttackRelease(harmony[5], '4', '+14:0');
-        rightSynth.triggerAttackRelease(harmony[6], '2', '+16:0');
-      }, '23m')
-
-      let drone = new Tone.Loop(time => {
-        leftSynth.triggerAttackRelease(bassNotes[0], '8', '+4:0');
-        leftSynth.triggerAttackRelease(bassNotes[1], '8', '+12:0');
-        leftSynth.triggerAttackRelease(bassNotes[0], '8', '+20:0');
-        leftSynth.triggerAttackRelease(bassNotes[2], '4', '+30:0');
-        leftSynth.triggerAttackRelease(bassNotes[3], '4', '+34:0');
-        leftSynth.triggerAttackRelease(bassNotes[4], '4', '+38:0');
-
-      }, '41m')
-
-      // lead.start()
+      lead.start()
       drone.start()
 
       Tone.Transport.bpm.value = 180;
       Tone.Transport.start();
       //
 
-      return () => { lead.stop(); drone.stop(); Tone.Transport.clear(lead); Tone.Transport.clear(drone); console.log("unmount") }
+      return () => {
+        lead.cancel();
+        drone.cancel();
+        Tone.Master.mute = true;
+        console.log("useEff off")
+      }
     }, [])
   // console.log("sc", props.user)
   return(

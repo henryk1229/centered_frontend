@@ -16,18 +16,9 @@ const ImageContainer = (props) => {
     set({ xy: [e.clientX, e.clientY] })
   }
 
-  //
-  const handleKeyPress = (e) =>{
-    if (e.key === 'a') {
-      props.handleLeave()
-    }
-  }
-
   return (
     <div>
-      <div className="circle-main" onMouseMove={e => setTrail(e)}
-      onKeyPress={(e)=>handleKeyPress(e)}
-      tabIndex="1" >
+      <div className="circle-main" onMouseMove={props.lava ? '' : e => setTrail(e)}>
         {trail.map((props, index) => (
           <animated.div
           key={index}
@@ -39,16 +30,16 @@ const ImageContainer = (props) => {
           } />
         ))}
       </div>
-      <canvas id="canvas"
+      <svg className="background"
       width={window.innerWidth}
       height={window.innerHeight}
-      background={props.background}
+      // background={props.background}
       style={
         {
           background: props.background
         }
       }>
-      </canvas>
+      </svg>
     </div>
   )
 }

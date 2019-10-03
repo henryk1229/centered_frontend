@@ -68,18 +68,19 @@ const App = (props) => {
   if (token && !loading) {
     return (
       <div className="app">
-        <NavBar
+          <NavBar
           user={user}
           logout={logout}
           background={background}
           leaveEnv={leaveEnv}
-        />
+          />
         <Switch>
           <Route exact path="/profile" render={(props) => {
             return <HomePage
             user={user}
             background={background}
             handleBackground={handleBackground}
+            leaveEnv={leaveEnv}
             {...props}/>}}
           />
         </Switch>
