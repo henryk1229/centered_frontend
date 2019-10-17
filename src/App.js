@@ -18,7 +18,7 @@ const App = (props) => {
   // user state and user fetch config
   const [user, setUser] = useState(null)
   const token = localStorage.getItem('token')
-  const userUrl = 'https://http://www.centered-backend.me/api/v1/auto_login'
+  const userUrl = 'https://www.centered-backend.me/api/v1/auto_login'
   // auth token for all fetch requests
   const fetchConfig = {
     headers: {

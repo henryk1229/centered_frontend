@@ -11,7 +11,7 @@ const Login = (props) => {
 
 
   //fetch config
-  const url = 'https://http://www.centered-backend.me/api/v1/login'
+  const url = 'https://www.centered-backend.me/api/v1/login'
   const fetchConfig = {
     method: "POST",
     headers: {
