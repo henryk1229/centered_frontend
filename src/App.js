@@ -18,7 +18,7 @@ const App = (props) => {
   // user state and user fetch config
   const [user, setUser] = useState(null)
   const token = localStorage.getItem('token')
-  const userUrl = 'https://mystifying-wescoff-20b0b0.netlify.com/api/v1/auto_login'
+  const userUrl = 'https://intense-journey-51720.herokuapp.com/api/v1/auto_login'
   // auth token for all fetch requests
   const fetchConfig = {
     headers: {
