@@ -8,7 +8,7 @@ const SignUp = (props) => {
   const [password, setPassword] = useState('')
 
   //fetch config
-  const url = 'https://intense-journey-51720.herokuapp.com/api/v1/users'
+  const url = 'https://http://www.centered-backend.me/api/v1/users'
   const fetchConfig = {
     method: "POST",
     headers: {
