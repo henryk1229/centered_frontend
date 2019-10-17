@@ -8,7 +8,7 @@ const SignUp = (props) => {
   const [password, setPassword] = useState('')
 
   //fetch config
-  const url = 'http://mystifying-wescoff-20b0b0.netlify.com/api/v1/users'
+  const url = 'https://mystifying-wescoff-20b0b0.netlify.com/api/v1/users'
   const fetchConfig = {
     method: "POST",
     headers: {
