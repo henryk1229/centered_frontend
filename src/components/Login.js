@@ -11,7 +11,7 @@ const Login = (props) => {
 
 
   //fetch config
-  const url = 'http://localhost:3000/api/v1/login'
+  const url = 'http://mystifying-wescoff-20b0b0.netlify.com/api/v1/login'
   const fetchConfig = {
     method: "POST",
     headers: {
